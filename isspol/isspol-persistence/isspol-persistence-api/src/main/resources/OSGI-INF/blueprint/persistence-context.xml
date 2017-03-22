@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0"
+           xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+    <jpa:enable/>
+    <tx:enable-annotations/>
+
+    <reference id="isspol-pu" interface="javax.sql.DataSource" filter="(osgi.jndi.service.name=SIISPOLWEB)" availability="optional"/>
+
+    <!-- DAOs -->
+    <bean id="estadoUsuarioDao" class="ec.org.isspol.persistence.dao.security.impl.EstadoUsuarioDaoImpl"/>
+    <bean id="horarioDao" class="ec.org.isspol.persistence.dao.security.impl.HorarioDaoImpl"/>
+    <bean id="oficinaDao" class="ec.org.isspol.persistence.dao.security.impl.OficinaDaoImpl"/>
+    <bean id="usuarioDao" class="ec.org.isspol.persistence.dao.security.impl.UsuarioDaoImpl"/>
+    <bean id="estructuraOrganizacionalDao" class="ec.org.isspol.persistence.dao.security.impl.EstructuraOrganizacionalDaoImpl"/>
+
+    <!-- Services -->
+    <bean id="usuarioSvc" class="ec.org.isspol.persistence.service.security.impl.UsuarioSvcImpl">
+        <property name="usuarioDao" ref="usuarioDao"/>
+    </bean>
+    <bean id="estadoUsuarioSvc" class="ec.org.isspol.persistence.service.security.impl.UsuarioSvcImpl">
+        <property name="estadoUsuarioDao" ref="estadoUsuarioDao"/>
+    </bean>
+    <bean id="horarioSvc" class="ec.org.isspol.persistence.service.security.impl.HorarioSvcImpl">
+        <property name="horarioDao" ref="horarioDao"/>
+    </bean>
+    <bean id="oficinaSvc" class="ec.org.isspol.persistence.service.security.impl.OficinaSvcImpl">
+        <property name="oficinaDao" ref="oficinaDao"/>
+    </bean>
+
+    <service ref="usuarioSvc" interface="ec.org.isspol.persistence.service.security.UsuarioSvc"/>
+    <service ref="estadoUsuarioSvc" interface="ec.org.isspol.persistence.service.security.EstadoUsuarioSvc"/>
+    <service ref="horarioSvc" interface="ec.org.isspol.persistence.service.security.HorarioSvc"/>
+    <service ref="oficinaSvc" interface="ec.org.isspol.persistence.service.security.OficinaSvc"/>
+
+</blueprint>
