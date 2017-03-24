@@ -1,13 +1,14 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class Permiso {
+public class Permiso implements Serializable {
     private int idPermiso;
     private String tipo;
     //private String grupo;

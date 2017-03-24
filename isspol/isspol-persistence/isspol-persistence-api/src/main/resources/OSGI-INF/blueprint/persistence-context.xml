@@ -85,12 +85,18 @@
 
     <!-- DAOs -->
     <bean id="estadoUsuarioDao" class="ec.org.isspol.persistence.dao.security.impl.EstadoUsuarioDaoImpl"/>
-    <bean id="horarioDao" class="ec.org.isspol.persistence.dao.security.impl.HorarioDaoImpl"/>
+    <bean id="horarioDao" class="ec.org.isspol.persistence.dao.security.impl.HorarioDaoImpl">
+        <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
+        <tx:transaction method="*" value="Required"/>
+    </bean>
     <bean id="oficinaDao" class="ec.org.isspol.persistence.dao.security.impl.OficinaDaoImpl">
         <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
         <tx:transaction method="*" value="Required"/>
     </bean>
-    <bean id="usuarioDao" class="ec.org.isspol.persistence.dao.security.impl.UsuarioDaoImpl"/>
+    <bean id="usuarioDao" class="ec.org.isspol.persistence.dao.security.impl.UsuarioDaoImpl">
+        <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
+        <tx:transaction method="*" value="Required"/>
+    </bean>
     <bean id="estructuraOrganizacionalDao" class="ec.org.isspol.persistence.dao.security.impl.EstructuraOrganizacionalDaoImpl"/>
 
     <!-- Services -->

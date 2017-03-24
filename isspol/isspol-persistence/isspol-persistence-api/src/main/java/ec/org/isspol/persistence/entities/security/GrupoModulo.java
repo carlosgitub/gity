@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -8,7 +9,7 @@ import java.sql.Timestamp;
  */
 @Entity
 //@IdClass(GrupoModuloPK.class)
-public class GrupoModulo {
+public class GrupoModulo implements Serializable {
     private int idGrupoModulo;
     //private int idModulo;
     private String modulo;

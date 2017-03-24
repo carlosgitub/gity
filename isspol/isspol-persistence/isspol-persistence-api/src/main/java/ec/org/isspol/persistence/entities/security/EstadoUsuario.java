@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -12,7 +13,7 @@ import java.util.Collection;
 @NamedQueries(
         @NamedQuery(name = "EstadoUsuario.findAllEstadoUsuario", query = "Select e from EstadoUsuario e")
 )
-public class EstadoUsuario {
+public class EstadoUsuario implements Serializable {
     private int idEstadoUsuario;
     private String estado;
     private String descripcion;

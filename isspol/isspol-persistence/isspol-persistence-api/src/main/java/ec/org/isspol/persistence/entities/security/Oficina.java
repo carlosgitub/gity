@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -9,7 +10,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "Seguridad.Oficina")
-public class Oficina {
+public class Oficina implements Serializable {
     private int idOficina;
     private String oficina;
     //private Integer idSucursal;

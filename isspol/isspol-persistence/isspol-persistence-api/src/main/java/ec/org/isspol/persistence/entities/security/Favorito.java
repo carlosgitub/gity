@@ -1,12 +1,13 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class Favorito {
+public class Favorito implements Serializable {
     private int idFavorito;
     private Integer idUsuario;
     //private Integer idOpcion;

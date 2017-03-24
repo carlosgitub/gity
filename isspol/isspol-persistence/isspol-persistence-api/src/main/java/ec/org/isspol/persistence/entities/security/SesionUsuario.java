@@ -4,13 +4,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class SesionUsuario {
+public class SesionUsuario implements Serializable {
     private int idSesion;
     private String usuario;
     private Timestamp fechaInicio;

@@ -14,16 +14,16 @@
         <module>isspol-bundle</module>
         <module>isspol-persistence</module>
         <module>isspol-feature</module>
-        <module>isspol-route</module>
         <module>isspol-amq-pool</module>
-        <module>isspol-route-client</module>
+        <module>isspol-routes</module>
+        <module>isspol-common</module>
     </modules>
 
     <properties>
         <!-- Versions -->
         <!-- Note - Use the versions that are in the container that you are deploying to -->
         <fuse.version.suffix>redhat-630187</fuse.version.suffix>
-        <activemq.version>5.12.1</activemq.version>
+        <activemq.version>5.11.0.${fuse.version.suffix}</activemq.version>
         <camel-fuse.version>2.17.0.${fuse.version.suffix}</camel-fuse.version>
         <commons-pool.version>1.6</commons-pool.version>
         <dbcp2.version>2.1.1</dbcp2.version>
@@ -126,6 +126,16 @@
                 <artifactId>isspol-route</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>ec.org.isspol</groupId>
+                <artifactId>isspol-route-pool</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ec.org.isspol</groupId>
+                <artifactId>isspol-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- Apache Camel -->
             <dependency>
@@ -153,6 +163,11 @@
             <dependency>
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>activemq-pool</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-camel</artifactId>
                 <version>${activemq.version}</version>
             </dependency>
 

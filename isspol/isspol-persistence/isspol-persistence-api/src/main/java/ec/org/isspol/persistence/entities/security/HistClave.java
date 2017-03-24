@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
@@ -8,7 +9,7 @@ import java.util.Arrays;
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class HistClave {
+public class HistClave implements Serializable {
     private int idHistClave;
     //private Integer idUsuario;
     private String usuario;
