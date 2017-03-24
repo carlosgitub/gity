@@ -19,7 +19,7 @@ public class OficinaDaoImpl extends GenericDAOImpl<Oficina, Integer> implements 
 
     @Override
     public List<OficinaSucursal> getAllOficinaSucursal() {
-        Query query = em.createNativeQuery("select oficina.oficina, oficina.nombre, sucursal.sucursal, sucursal.nombre as sucursalNombre\n" +
+        Query query = entityManager.createNativeQuery("select oficina.oficina, oficina.nombre, sucursal.sucursal, sucursal.nombre as sucursalNombre\n" +
                 "from seguridad.oficina join seguridad.sucursal on oficina.idsucursal=sucursal.idsucursal");
         List<OficinaSucursal> oficinaSucursals = getResultList(query, OficinaSucursal.class);
         return oficinaSucursals;

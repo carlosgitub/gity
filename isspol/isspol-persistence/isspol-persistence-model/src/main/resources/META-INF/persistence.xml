@@ -2,7 +2,7 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="isspol-pu" transaction-type="JTA">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=SIISPOLWEB)</jta-data-source>
         <non-jta-data-source>osgi:service/javax.sql.DataSource/(transactional=false)</non-jta-data-source>
         <class>ec.org.isspol.persistence.entities.security.CarpetaOpcion</class>
@@ -38,14 +38,7 @@
         <class>ec.org.isspol.persistence.entities.security.UsuarioOficina</class>
         <class>ec.org.isspol.persistence.entities.security.UsuarioUbicacionGeografica</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:sqlserver://192.168.217.34:1433;databaseName=SIISPOLWEB"/>
-            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-            <property name="hibernate.connection.username" value=""/>
-            <property name="hibernate.connection.password" value=""/>
-            <property name="hibernate.archive.autodetection" value="class"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
         </properties>
     </persistence-unit>
 </persistence>

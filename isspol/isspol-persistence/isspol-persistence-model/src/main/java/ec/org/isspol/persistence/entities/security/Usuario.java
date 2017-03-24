@@ -5,6 +5,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,7 +19,7 @@ import java.util.Collection;
         @NamedQuery(name = "Usuario.findAllUsuario", query = "Select u from Usuario u"),
         @NamedQuery(name = "Usuario.findUsuarioByIdEstadoUsuario", query = "Select u from Usuario u where u.estadoUsuarioByIdEstadoUsuario.idEstadoUsuario = ?1")
 })
-public class Usuario {
+public class Usuario implements Serializable {
     private int idUsuario;
     private String usuario;
     //private Integer idOficina;

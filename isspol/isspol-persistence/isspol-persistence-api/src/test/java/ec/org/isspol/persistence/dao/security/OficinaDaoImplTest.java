@@ -24,7 +24,7 @@ public class OficinaDaoImplTest extends BaseTest {
     @Test
     public void getAllOficinaSucursal(){
         OficinaDao oficinaDao = (OficinaDao) getBean("oficinaDao");
-        List<OficinaSucursal> oficinaSucursals = oficinaDao.getOficinaSucursal();
+        List<OficinaSucursal> oficinaSucursals = oficinaDao.getAllOficinaSucursal();
         for (OficinaSucursal oficinaSucursal: oficinaSucursals){
             logger.info("Oficina Sucursal: {} - {} - {} - {}", oficinaSucursal.getOficina(), oficinaSucursal.getNombre(), oficinaSucursal.getSucursal(), oficinaSucursal.getSucursalNombre());
         }

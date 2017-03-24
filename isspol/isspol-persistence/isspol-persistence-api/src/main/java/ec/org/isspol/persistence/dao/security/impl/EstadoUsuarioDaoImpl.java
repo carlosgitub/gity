@@ -17,7 +17,7 @@ public class EstadoUsuarioDaoImpl extends GenericDAOImpl<EstadoUsuario, Integer>
     }
 
     public List<EstadoUsuario> getAllEstadoUsuario() {
-        Query query  = em.createNamedQuery("EstadoUsuario.findAllEstadoUsuario");
+        Query query  = entityManager.createNamedQuery("EstadoUsuario.findAllEstadoUsuario");
         List<EstadoUsuario> estadoUsuario = query.getResultList();
         return estadoUsuario;
     }

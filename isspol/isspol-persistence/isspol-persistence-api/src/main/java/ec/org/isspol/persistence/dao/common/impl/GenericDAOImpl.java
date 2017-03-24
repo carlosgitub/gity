@@ -3,6 +3,8 @@ package ec.org.isspol.persistence.dao.common.impl;
 import ec.org.isspol.persistence.dao.common.GenericDao;
 import ec.org.isspol.persistence.dao.security.impl.AbstractJPADao;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
@@ -13,7 +15,9 @@ import java.util.List;
 /**
  * Created by mauchilan on 20/3/17.
  */
-public class GenericDAOImpl <T, PK extends Serializable> extends AbstractJPADao implements GenericDao<T, PK> {
+public class GenericDAOImpl <T, PK extends Serializable> implements GenericDao<T, PK> {
+
+    protected EntityManager entityManager;
 
     private Class<T> type;
 
@@ -22,22 +26,22 @@ public class GenericDAOImpl <T, PK extends Serializable> extends AbstractJPADao 
     }
 
     public void create(T entity) {
-        em.persist(entity);
-        em.flush();
+        entityManager.persist(entity);
+        entityManager.flush();
     }
 
     public T read(PK id) {
-        return em.find(type, id);
+        return entityManager.find(type, id);
     }
 
     public void update(T entity) {
-        em.merge(entity);
-        em.flush();
+        entityManager.merge(entity);
+        entityManager.flush();
     }
 
     public void delete(T entity) {
-        em.remove(entity);
-        em.flush();
+        entityManager.remove(entity);
+        entityManager.flush();
     }
 
     public static <T> List<T> map(Class<T> type, List<Object[]> records){
@@ -67,4 +71,11 @@ public class GenericDAOImpl <T, PK extends Serializable> extends AbstractJPADao 
         }
     }
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 }

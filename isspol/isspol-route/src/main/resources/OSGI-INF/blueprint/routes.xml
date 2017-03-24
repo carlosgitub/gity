@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0">
+
+    <reference id="usuarioSvc" interface="ec.org.isspol.persistence.service.security.UsuarioSvc"/>
+    <!--<reference id="estadoUsuarioSvc" interface="ec.org.isspol.persistence.service.security.EstadoUsuarioSvc"/>-->
+    <reference id="horarioSvc" interface="ec.org.isspol.persistence.service.security.HorarioSvc"/>
+    <reference id="oficinaSvc" interface="ec.org.isspol.persistence.service.security.OficinaSvc"/>
+
+    <bean id="usuarioService" class="ec.org.isspol.route.security.UsuarioServiceImpl">
+        <!--<property name="usuarioSvc" ref="usuarioSvc"/>
+        <property name="estadoUsuarioSvc" ref="estadoUsuarioSvc"/>-->
+        <property name="oficinaSvc" ref="oficinaSvc"/>
+        <!--<property name="horarioSvc" ref="horarioSvc"/>-->
+    </bean>
+
+    <bean id="usuarioRoute" class="ec.org.isspol.route.security.UsuarioServiceRoute"/>
+
+    <!-- camel activemq component to connect to the broker -->
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+    </bean>
+
+    <!-- AMQ Pool -->
+    <!--<reference id="jmsConsumerPool" interface="javax.jms.ConnectionFactory" filter="(isspol.client=true)"/>
+
+    <reference id="jmsProducerPool" interface="javax.jms.ConnectionFactory" filter="(isspol=true)"/>
+
+    <bean id="jmsConfig" class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory" ref="jmsConsumerPool"/>
+        <property name="templateConnectionFactory" ref="jmsProducerPool"/>
+    </bean>
+
+    <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+        <property name="configuration" ref="jmsConfig"/>
+    </bean>-->
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="usuarioRoute"/>
+    </camelContext>
+
+</blueprint>

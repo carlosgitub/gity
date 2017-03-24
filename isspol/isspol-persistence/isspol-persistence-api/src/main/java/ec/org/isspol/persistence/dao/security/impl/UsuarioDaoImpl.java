@@ -18,13 +18,13 @@ public class UsuarioDaoImpl extends GenericDAOImpl<Usuario, Integer> implements 
 
     @Override
     public List<Usuario> getAllUsuario() {
-        Query query = em.createNamedQuery("Usuario.findAllUsuario");
+        Query query = entityManager.createNamedQuery("Usuario.findAllUsuario");
         List<Usuario> usuarios = query.getResultList();
         return usuarios;
     }
 
     public List<Usuario> getUsuarioByEstado(Object[] parameters) {
-        Query query = em.createNamedQuery("Usuario.findUsuarioByIdEstadoUsuario");
+        Query query = entityManager.createNamedQuery("Usuario.findUsuarioByIdEstadoUsuario");
         for (int i = 0; i < parameters.length; i++)
             query.setParameter(i + 1, parameters[i]);
         List<Usuario> usuarios = query.getResultList();

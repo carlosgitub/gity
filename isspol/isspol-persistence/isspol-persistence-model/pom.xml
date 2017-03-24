@@ -17,6 +17,11 @@
         <isspol.osgi.export.pkg>
             ec.org.isspol.persistence.entities.security
         </isspol.osgi.export.pkg>
+        <isspol.osgi.import.pkg>
+            org.hibernate.proxy,
+            javassist.util.proxy,
+            *
+        </isspol.osgi.import.pkg>
         <isspol.osgi.jpa.context>META-INF/persistence.xml</isspol.osgi.jpa.context>
     </properties>
 

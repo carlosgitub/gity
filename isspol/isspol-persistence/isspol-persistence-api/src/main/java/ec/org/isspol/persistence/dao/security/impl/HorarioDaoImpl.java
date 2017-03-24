@@ -17,7 +17,7 @@ public class HorarioDaoImpl extends GenericDAOImpl<Horario, Integer> implements 
     }
 
     public List<Horario> getAllHorario() {
-        Query query = em.createNamedQuery("Horario.findAllHorario");
+        Query query = entityManager.createNamedQuery("Horario.findAllHorario");
         List<Horario> horarios = query.getResultList();
         return horarios;
     }
