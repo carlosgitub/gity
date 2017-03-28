@@ -40,6 +40,10 @@
             <groupId>ec.org.isspol</groupId>
             <artifactId>sqljdbc</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ec.org.isspol</groupId>
+            <artifactId>isspol-common</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.aries.jpa</groupId>

@@ -9,5 +9,6 @@ public class ConstantIsspol {
     public final static String METHOD_GET_ALL_USUARIO = "getAllUsuario";
     public final static String METHOD_GET_USUARIO_BY_ESTADO = "getUsuarioByEstado";
     public final static String METHOD_GET_ALL_HORARIO = "getAllHorario";
+    public final static String SQL_TYPES = "java.sql.Types";
 
 }
