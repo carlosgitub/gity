@@ -25,23 +25,23 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--<context:property-placeholder
-            location="file:${JBOSS_HOME}/standalone/configuration/activemq.properties" order="1" ignore-unresolvable="true"/>-->
+    <context:property-placeholder
+            location="file:${JBOSS_HOME}/standalone/configuration/activemq.properties" order="1" ignore-unresolvable="true"/>
 
     <!-- camel activemq component to connect to the broker -->
-    <!--<bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
+    <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
         <property name="userName" value="${activemq.user}"/>
         <property name="password" value="${activemq.password}"/>
         <property name="brokerURL" value="${activemq.brokerUrl}"/>
         <property name="trustAllPackages" value="true"/>
-    </bean>-->
+    </bean>
 
-    <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
+    <!--<bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
         <property name="userName" value="admin"/>
         <property name="password" value="admin"/>
         <property name="brokerURL" value="tcp://localhost:61616"/>
         <property name="trustAllPackages" value="true"/>
-    </bean>
+    </bean>-->
 
     <bean id="usuarioServiceClient" class="ec.org.isspol.route.client.UsuarioServiceClient">
         <property name="context" ref="camelClient"/>
