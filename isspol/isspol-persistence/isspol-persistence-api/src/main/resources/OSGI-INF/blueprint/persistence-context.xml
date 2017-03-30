@@ -24,7 +24,6 @@
         <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
         <tx:transaction method="*" value="Required"/>
     </bean>
-    <bean id="estructuraOrganizacionalDao" class="ec.org.isspol.persistence.dao.security.impl.EstructuraOrganizacionalDaoImpl"/>
 
     <!-- Services -->
     <bean id="usuarioSvc" class="ec.org.isspol.persistence.service.security.impl.UsuarioSvcImpl">
