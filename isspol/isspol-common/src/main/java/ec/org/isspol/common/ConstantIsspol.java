@@ -9,6 +9,11 @@ public class ConstantIsspol {
     public final static String METHOD_GET_ALL_USUARIO = "getAllUsuario";
     public final static String METHOD_GET_USUARIO_BY_ESTADO = "getUsuarioByEstado";
     public final static String METHOD_GET_ALL_HORARIO = "getAllHorario";
+    public final static String METHOD_GET_ALL_CARGO = "getAllCargo";
+    public final static String METHOD_GET_ESTADO_USUARIO = "getAllEstadoUsuario";
+    public final static String METHOD_CREATE_USUARIO = "createUsuario";
+    public final static String METHOD_UPDATE_USUARIO = "updateUsuario";
+    public final static String METHOD_DELETE_USUARIO = "deleteUsuario";
 
     /**
      * Constantes del Procedimiento Almacenado Seguridad.ProcUsuarioInsertar

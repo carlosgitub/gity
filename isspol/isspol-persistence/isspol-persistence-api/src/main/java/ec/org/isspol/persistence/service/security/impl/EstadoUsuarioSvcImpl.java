@@ -18,7 +18,8 @@ public class EstadoUsuarioSvcImpl implements EstadoUsuarioSvc {
         return estadoUsuarioDao.getAllEstadoUsuario();
     }
 
-    public void setEstadoUsuario(EstadoUsuarioDao estadoUsuarioDao) {
+    public void setEstadoUsuarioDao(EstadoUsuarioDao estadoUsuarioDao) {
         this.estadoUsuarioDao = estadoUsuarioDao;
     }
+
 }

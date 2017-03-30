@@ -53,7 +53,9 @@ public class UsuarioServiceFacadeImpl implements UsuarioServiceFacade {
 
     @Override
     public Map<String, Object> getAllCargo() {
-        return isspolStoreProcedureSvc.executeStoreProcedure(ConstantIsspol.PROC_DDDW_ESTRUCTURA_ORGANIZACIONAL, null, null);
+        SqlParameter[] sqlParameters = new SqlParameter[]{};
+        Map<String, Object> values = new HashMap<>();
+        return isspolStoreProcedureSvc.executeStoreProcedure(ConstantIsspol.PROC_DDDW_ESTRUCTURA_ORGANIZACIONAL, sqlParameters, false, values);
     }
 
     @Override
@@ -74,33 +76,57 @@ public class UsuarioServiceFacadeImpl implements UsuarioServiceFacade {
                 new SqlOutParameter(ConstantIsspol.AI_USU_ID, Types.INTEGER),
                 new SqlOutParameter(ConstantIsspol.AS_MSJ, Types.VARCHAR)
         };
-        return isspolStoreProcedureSvc.executeStoreProcedure(ConstantIsspol.PROC_USUARIO_INSERTAR, sqlParameters, values);
+        return isspolStoreProcedureSvc.executeStoreProcedure(ConstantIsspol.PROC_USUARIO_INSERTAR, sqlParameters, false, values);
     }
 
+    /**
+     *
+     * @param values
+     * @AS_USUARIO VARCHAR(15),
+     * @AS_OFICINA CHAR(4),
+     * @AS_NOMBRE VARCHAR(30),
+     * @AS_ESTADO CHAR(1),
+     * @AS_EMAIL VARCHAR(100),
+     * @AB_CAMBIAR_PWD_PRX_LOGON BIT,
+     * @AB_NO_PUEDE_CAMBIAR_PWD BIT,
+     * @AB_PWD_NUNCA_EXPIRA BIT,
+     * @AB_BLOQUEADA BIT,
+     * @AI_ID INT,
+     * @AS_IDENTIFICACION VARCHAR(15),
+     * @AB_CUALQUIER_ESTACION BIT,
+     * @AI_TIEMPO_INACTIVIDAD INT,
+     * @AS_USUARIO_ACT VARCHAR(15),
+     * @AS_MSJ VARCHAR(100) OUTPUT,
+     * @AI_ID_HORARIO INT,
+     * @AI_ID_ESTRUCTURA INT,
+     * @AS_USUARIO_SUPERIOR VARCHAR(15),
+     * @AI_ID_DASHBOARD_INICIO INT
+     * * @return
+     */
     @Override
     public Map<String, Object> updateUsuario(HashMap<String, Object> values) {
         SqlParameter[] sqlParameters = new SqlParameter[]{
                 new SqlParameter(ConstantIsspol.AS_USUARIO, Types.VARCHAR),
-                new SqlParameter(ConstantIsspol.AS_OFICINA, Types.INTEGER),
+                new SqlParameter(ConstantIsspol.AS_OFICINA, Types.CHAR),
                 new SqlParameter(ConstantIsspol.AS_NOMBRE, Types.VARCHAR),
-                new SqlParameter(ConstantIsspol.AS_ESTADO, Types.INTEGER),
-                new SqlParameter(ConstantIsspol.AS_EMAIL, Types.INTEGER),
-                new SqlParameter(ConstantIsspol.AB_CAMBIAR_PWD_PRX_LOGON, Types.INTEGER),
+                new SqlParameter(ConstantIsspol.AS_ESTADO, Types.CHAR),
+                new SqlParameter(ConstantIsspol.AS_EMAIL, Types.VARCHAR),
+                new SqlParameter(ConstantIsspol.AB_CAMBIAR_PWD_PRX_LOGON, Types.BIT),
                 new SqlParameter(ConstantIsspol.AB_NO_PUEDE_CAMBIAR_PWD, Types.BIT),
-                new SqlParameter(ConstantIsspol.AB_PWD_NUNCA_EXPIRA, Types.INTEGER),
-                new SqlParameter(ConstantIsspol.AB_BLOQUEADA, Types.INTEGER),
+                new SqlParameter(ConstantIsspol.AB_PWD_NUNCA_EXPIRA, Types.BIT),
+                new SqlParameter(ConstantIsspol.AB_BLOQUEADA, Types.BIT),
                 new SqlParameter(ConstantIsspol.AI_ID, Types.INTEGER),
-                new SqlParameter(ConstantIsspol.AS_IDENTIFICACION, Types.INTEGER),
-                new SqlParameter(ConstantIsspol.AB_CUALQUIER_ESTACION, Types.VARCHAR),
+                new SqlParameter(ConstantIsspol.AS_IDENTIFICACION, Types.VARCHAR),
+                new SqlParameter(ConstantIsspol.AB_CUALQUIER_ESTACION, Types.BIT),
                 new SqlParameter(ConstantIsspol.AI_TIEMPO_INACTIVIDAD, Types.INTEGER),
                 new SqlParameter(ConstantIsspol.AS_USUARIO_ACT, Types.VARCHAR),
                 new SqlOutParameter(ConstantIsspol.AS_MSJ, Types.VARCHAR),
-                new SqlParameter(ConstantIsspol.AI_ID_HORARIO, Types.VARCHAR),
-                new SqlParameter(ConstantIsspol.AI_ID_ESTRUCTURA, Types.VARCHAR),
+                new SqlParameter(ConstantIsspol.AI_ID_HORARIO, Types.INTEGER),
+                new SqlParameter(ConstantIsspol.AI_ID_ESTRUCTURA, Types.INTEGER),
                 new SqlParameter(ConstantIsspol.AS_USUARIO_SUPERIOR, Types.VARCHAR),
-                new SqlParameter(ConstantIsspol.AI_ID_DASHBOARD_INICIO, Types.VARCHAR)
+                new SqlParameter(ConstantIsspol.AI_ID_DASHBOARD_INICIO, Types.INTEGER)
         };
-        return isspolStoreProcedureSvc.executeStoreProcedure(ConstantIsspol.PROC_USUARIO_ACTUALIZAR, sqlParameters, values);
+        return isspolStoreProcedureSvc.executeStoreProcedure(ConstantIsspol.PROC_USUARIO_ACTUALIZAR, sqlParameters, false, values);
     }
 
     @Override
@@ -112,10 +138,6 @@ public class UsuarioServiceFacadeImpl implements UsuarioServiceFacade {
         this.horarioSvc = horarioSvc;
     }
 
-    /*public void setEstadoUsuarioSvc(EstadoUsuarioSvc estadoUsuarioSvc) {
-        this.estadoUsuarioSvc = estadoUsuarioSvc;
-    }*/
-
     public void setOficinaSvc(OficinaSvc oficinaSvc) {
         this.oficinaSvc = oficinaSvc;
     }
@@ -126,5 +148,9 @@ public class UsuarioServiceFacadeImpl implements UsuarioServiceFacade {
 
     public void setIsspolStoreProcedureSvc(IsspolStoreProcedureSvc isspolStoreProcedureSvc) {
         this.isspolStoreProcedureSvc = isspolStoreProcedureSvc;
+    }
+
+    public void setEstadoUsuarioSvc(EstadoUsuarioSvc estadoUsuarioSvc) {
+        this.estadoUsuarioSvc = estadoUsuarioSvc;
     }
 }

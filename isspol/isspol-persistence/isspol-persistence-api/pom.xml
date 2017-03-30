@@ -21,9 +21,11 @@
             ec.org.isspol.persistence.dao.security.impl,
             ec.org.isspol.persistence.service.security,
             ec.org.isspol.persistence.service.security.impl,
+            ec.org.isspol.persistence.sp,
             ec.org.isspol.persistence.sp.service
         </isspol.osgi.export.pkg>
         <isspol.osgi.import.pkg>
+            org.springframework.jdbc.*;version="[2.1,4)",
             *
         </isspol.osgi.import.pkg>
     </properties>
