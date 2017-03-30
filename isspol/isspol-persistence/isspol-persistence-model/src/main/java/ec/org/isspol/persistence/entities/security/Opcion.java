@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -8,7 +9,7 @@ import java.util.Collection;
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class Opcion {
+public class Opcion implements Serializable {
     private int idOpcion;
     private int opcion;
     private String modulo;
@@ -19,8 +20,6 @@ public class Opcion {
     private String descripcion;
     private String parametro;
     private String tipoAbrir;
-    //private int idCarpetaOpcion;
-    //private int idIcono;
     private boolean visible;
     private String creacionUsuario;
     private Timestamp creacionFecha;
@@ -132,26 +131,6 @@ public class Opcion {
         this.tipoAbrir = tipoAbrir;
     }
 
-    /*@Basic
-    @Column(name = "IdCarpetaOpcion", nullable = false)
-    public int getIdCarpetaOpcion() {
-        return idCarpetaOpcion;
-    }
-
-    public void setIdCarpetaOpcion(int idCarpetaOpcion) {
-        this.idCarpetaOpcion = idCarpetaOpcion;
-    }*/
-
-    /*@Basic
-    @Column(name = "IdIcono", nullable = false)
-    public int getIdIcono() {
-        return idIcono;
-    }
-
-    public void setIdIcono(int idIcono) {
-        this.idIcono = idIcono;
-    }*/
-
     @Basic
     @Column(name = "Visible", nullable = false)
     public boolean isVisible() {
@@ -212,8 +191,6 @@ public class Opcion {
         if (idOpcion != opcion1.idOpcion) return false;
         if (opcion != opcion1.opcion) return false;
         if (orden != opcion1.orden) return false;
-        //if (idCarpetaOpcion != opcion1.idCarpetaOpcion) return false;
-        //if (idIcono != opcion1.idIcono) return false;
         if (visible != opcion1.visible) return false;
         if (modulo != null ? !modulo.equals(opcion1.modulo) : opcion1.modulo != null) return false;
         if (grupoMod != null ? !grupoMod.equals(opcion1.grupoMod) : opcion1.grupoMod != null) return false;
@@ -228,10 +205,7 @@ public class Opcion {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(opcion1.modificaUsuario) : opcion1.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(opcion1.modificaFecha) : opcion1.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(opcion1.modificaFecha) : opcion1.modificaFecha == null;
     }
 
     @Override
@@ -246,8 +220,6 @@ public class Opcion {
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
         result = 31 * result + (parametro != null ? parametro.hashCode() : 0);
         result = 31 * result + (tipoAbrir != null ? tipoAbrir.hashCode() : 0);
-        //result = 31 * result + idCarpetaOpcion;
-        //result = 31 * result + idIcono;
         result = 31 * result + (visible ? 1 : 0);
         result = 31 * result + (creacionUsuario != null ? creacionUsuario.hashCode() : 0);
         result = 31 * result + (creacionFecha != null ? creacionFecha.hashCode() : 0);

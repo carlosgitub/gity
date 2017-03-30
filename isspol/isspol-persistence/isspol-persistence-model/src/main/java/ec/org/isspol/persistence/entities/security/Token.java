@@ -4,13 +4,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class Token {
+public class Token implements Serializable {
     private int idToken;
     private String estado;
     private String dato;
@@ -105,10 +106,7 @@ public class Token {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(token.modificaUsuario) : token.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(token.modificaFecha) : token.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(token.modificaFecha) : token.modificaFecha == null;
     }
 
     @Override

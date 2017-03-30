@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="isspol-pu" transaction-type="JTA">
+    <persistence-unit name="SIISPOLWEB" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=SIISPOLWEB)</jta-data-source>
-        <non-jta-data-source>osgi:service/javax.sql.DataSource/(transactional=false)</non-jta-data-source>
+        <jta-data-source>osgi:service/SIISPOLWEB</jta-data-source>
+        <non-jta-data-source>osgi:service/SIISPOLWEB</non-jta-data-source>
         <class>ec.org.isspol.persistence.entities.security.CarpetaOpcion</class>
         <class>ec.org.isspol.persistence.entities.security.Estacion</class>
         <class>ec.org.isspol.persistence.entities.security.EstacionUsuario</class>

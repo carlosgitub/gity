@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -8,7 +9,7 @@ import java.util.Collection;
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class Modulo {
+public class Modulo implements Serializable {
     private int idModulo;
     private String modulo;
     private String nombre;
@@ -116,10 +117,7 @@ public class Modulo {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(modulo1.modificaUsuario) : modulo1.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(modulo1.modificaFecha) : modulo1.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(modulo1.modificaFecha) : modulo1.modificaFecha == null;
     }
 
     @Override

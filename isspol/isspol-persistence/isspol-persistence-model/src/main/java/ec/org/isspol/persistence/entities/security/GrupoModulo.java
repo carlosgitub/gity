@@ -1,16 +1,15 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-//@IdClass(GrupoModuloPK.class)
-public class GrupoModulo {
+public class GrupoModulo implements Serializable {
     private int idGrupoModulo;
-    //private int idModulo;
     private String modulo;
     private String grupoMod;
     private String nombre;
@@ -29,16 +28,6 @@ public class GrupoModulo {
     public void setIdGrupoModulo(int idGrupoModulo) {
         this.idGrupoModulo = idGrupoModulo;
     }
-
-    /*@Id
-    @Column(name = "IdModulo", nullable = false)
-    public int getIdModulo() {
-        return idModulo;
-    }
-
-    public void setIdModulo(int idModulo) {
-        this.idModulo = idModulo;
-    }*/
 
     @Basic
     @Column(name = "Modulo", nullable = false, length = 2)
@@ -128,10 +117,7 @@ public class GrupoModulo {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override

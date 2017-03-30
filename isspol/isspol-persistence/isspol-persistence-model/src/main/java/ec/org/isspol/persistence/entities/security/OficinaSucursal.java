@@ -12,6 +12,8 @@ public class OficinaSucursal implements Serializable {
     private String sucursal;
     private String sucursalNombre;
 
+    public OficinaSucursal(){}
+
     public OficinaSucursal(String oficina, String nombre, String sucursal, String sucursalNombre){
         this.oficina = oficina.trim();
         this.nombre = nombre;

@@ -3,7 +3,6 @@ package ec.org.isspol.persistence.entities.security;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -43,9 +42,7 @@ public class GrupoModuloPK implements Serializable {
         GrupoModuloPK that = (GrupoModuloPK) o;
 
         if (idGrupoModulo != that.idGrupoModulo) return false;
-        if (idModulo != that.idModulo) return false;
-
-        return true;
+        return idModulo == that.idModulo;
     }
 
     @Override

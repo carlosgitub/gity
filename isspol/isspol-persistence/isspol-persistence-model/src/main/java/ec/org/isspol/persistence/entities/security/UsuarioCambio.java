@@ -1,13 +1,14 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class UsuarioCambio {
+public class UsuarioCambio implements Serializable {
     private int idUsuarioCambio;
     //private Integer idUsuario;
     private String usuario;
@@ -113,10 +114,7 @@ public class UsuarioCambio {
         if (nuevo != null ? !nuevo.equals(that.nuevo) : that.nuevo != null) return false;
         if (creacionUsuario != null ? !creacionUsuario.equals(that.creacionUsuario) : that.creacionUsuario != null)
             return false;
-        if (creacionFecha != null ? !creacionFecha.equals(that.creacionFecha) : that.creacionFecha != null)
-            return false;
-
-        return true;
+        return creacionFecha != null ? creacionFecha.equals(that.creacionFecha) : that.creacionFecha == null;
     }
 
     @Override

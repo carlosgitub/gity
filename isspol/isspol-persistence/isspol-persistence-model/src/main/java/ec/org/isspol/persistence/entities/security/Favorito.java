@@ -1,15 +1,15 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class Favorito {
+public class Favorito implements Serializable {
     private int idFavorito;
     private Integer idUsuario;
-    //private Integer idOpcion;
     private String usuario;
     private int opcion;
     private Opcion opcionByIdOpcion;
@@ -33,16 +33,6 @@ public class Favorito {
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-    /*@Basic
-    @Column(name = "IdOpcion", nullable = true)
-    public Integer getIdOpcion() {
-        return idOpcion;
-    }
-
-    public void setIdOpcion(Integer idOpcion) {
-        this.idOpcion = idOpcion;
-    }*/
 
     @Basic
     @Column(name = "Usuario", nullable = false, length = 15)
@@ -74,10 +64,7 @@ public class Favorito {
         if (idFavorito != favorito.idFavorito) return false;
         if (opcion != favorito.opcion) return false;
         if (idUsuario != null ? !idUsuario.equals(favorito.idUsuario) : favorito.idUsuario != null) return false;
-        //if (idOpcion != null ? !idOpcion.equals(favorito.idOpcion) : favorito.idOpcion != null) return false;
-        if (usuario != null ? !usuario.equals(favorito.usuario) : favorito.usuario != null) return false;
-
-        return true;
+        return usuario != null ? usuario.equals(favorito.usuario) : favorito.usuario == null;
     }
 
     @Override

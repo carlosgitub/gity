@@ -4,13 +4,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class SesionUsuario {
+public class SesionUsuario implements Serializable {
     private int idSesion;
     private String usuario;
     private Timestamp fechaInicio;
@@ -114,9 +115,7 @@ public class SesionUsuario {
         if (motivoCierre != null ? !motivoCierre.equals(that.motivoCierre) : that.motivoCierre != null) return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
         if (host != null ? !host.equals(that.host) : that.host != null) return false;
-        if (comentario != null ? !comentario.equals(that.comentario) : that.comentario != null) return false;
-
-        return true;
+        return comentario != null ? comentario.equals(that.comentario) : that.comentario == null;
     }
 
     @Override

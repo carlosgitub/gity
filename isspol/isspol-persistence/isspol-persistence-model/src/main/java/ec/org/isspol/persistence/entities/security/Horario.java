@@ -98,10 +98,7 @@ public class Horario implements Serializable {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(horario.modificaUsuario) : horario.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(horario.modificaFecha) : horario.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(horario.modificaFecha) : horario.modificaFecha == null;
     }
 
     @Override

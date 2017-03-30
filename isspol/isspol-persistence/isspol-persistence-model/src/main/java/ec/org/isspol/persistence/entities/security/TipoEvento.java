@@ -4,13 +4,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class TipoEvento {
+public class TipoEvento implements Serializable {
     private int idTipoEvento;
     private String descripcion;
     private String codigo;
@@ -105,10 +106,7 @@ public class TipoEvento {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override

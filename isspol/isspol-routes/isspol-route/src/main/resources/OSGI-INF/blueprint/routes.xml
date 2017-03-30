@@ -14,15 +14,17 @@
     </cm:property-placeholder>
 
     <reference id="usuarioSvc" interface="ec.org.isspol.persistence.service.security.UsuarioSvc"/>
-    <!--<reference id="estadoUsuarioSvc" interface="ec.org.isspol.persistence.service.security.EstadoUsuarioSvc"/>-->
+    <reference id="estadoUsuarioSvc" interface="ec.org.isspol.persistence.service.security.EstadoUsuarioSvc"/>
     <reference id="horarioSvc" interface="ec.org.isspol.persistence.service.security.HorarioSvc"/>
     <reference id="oficinaSvc" interface="ec.org.isspol.persistence.service.security.OficinaSvc"/>
+    <reference id="storeProcedureSvc" interface="ec.org.isspol.persistence.sp.service.IsspolStoreProcedureSvc"/>
 
     <bean id="usuarioServiceFacade" class="ec.org.isspol.route.security.facade.UsuarioServiceFacadeImpl">
         <property name="usuarioSvc" ref="usuarioSvc"/>
-        <!--<property name="estadoUsuarioSvc" ref="estadoUsuarioSvc"/>-->
+        <property name="estadoUsuarioSvc" ref="estadoUsuarioSvc"/>
         <property name="oficinaSvc" ref="oficinaSvc"/>
         <property name="horarioSvc" ref="horarioSvc"/>
+        <property name="isspolStoreProcedureSvc" ref="storeProcedureSvc"/>
     </bean>
 
     <bean id="usuarioService" class="ec.org.isspol.route.security.service.bean.UsuarioServiceBean" init-method="init">

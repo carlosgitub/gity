@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -8,7 +9,7 @@ import java.util.Collection;
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class Impresora {
+public class Impresora implements Serializable {
     private int idImpresora;
     private String nombre;
     private String dispositivo;
@@ -105,10 +106,7 @@ public class Impresora {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(impresora.modificaUsuario) : impresora.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(impresora.modificaFecha) : impresora.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(impresora.modificaFecha) : impresora.modificaFecha == null;
     }
 
     @Override

@@ -1,16 +1,15 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class EstacionUsuario {
+public class EstacionUsuario implements Serializable {
     private int idEstacionUsuario;
-    //private int idEstacion;
-    //private int idUsuario;
     private String usuario;
     private String creacionUsuario;
     private Timestamp creacionFecha;
@@ -28,26 +27,6 @@ public class EstacionUsuario {
     public void setIdEstacionUsuario(int idEstacionUsuario) {
         this.idEstacionUsuario = idEstacionUsuario;
     }
-
-    /*@Basic
-    @Column(name = "IdEstacion", nullable = false)
-    public int getIdEstacion() {
-        return idEstacion;
-    }
-
-    public void setIdEstacion(int idEstacion) {
-        this.idEstacion = idEstacion;
-    }*/
-
-    /*@Basic
-    @Column(name = "IdUsuario", nullable = false)
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }*/
 
     @Basic
     @Column(name = "Usuario", nullable = true, length = 15)
@@ -107,8 +86,6 @@ public class EstacionUsuario {
         EstacionUsuario that = (EstacionUsuario) o;
 
         if (idEstacionUsuario != that.idEstacionUsuario) return false;
-        //if (idEstacion != that.idEstacion) return false;
-        //if (idUsuario != that.idUsuario) return false;
         if (usuario != null ? !usuario.equals(that.usuario) : that.usuario != null) return false;
         if (creacionUsuario != null ? !creacionUsuario.equals(that.creacionUsuario) : that.creacionUsuario != null)
             return false;
@@ -116,17 +93,12 @@ public class EstacionUsuario {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override
     public int hashCode() {
         int result = idEstacionUsuario;
-        //result = 31 * result + idEstacion;
-        //result = 31 * result + idUsuario;
         result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
         result = 31 * result + (creacionUsuario != null ? creacionUsuario.hashCode() : 0);
         result = 31 * result + (creacionFecha != null ? creacionFecha.hashCode() : 0);

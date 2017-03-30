@@ -21,14 +21,11 @@
             ec.org.isspol.persistence.dao.security.impl,
             ec.org.isspol.persistence.service.security,
             ec.org.isspol.persistence.service.security.impl,
-            ec.org.isspol.persistence.entities.security
+            ec.org.isspol.persistence.sp.service
         </isspol.osgi.export.pkg>
         <isspol.osgi.import.pkg>
-            org.hibernate.proxy,
-            javassist.util.proxy,
             *
         </isspol.osgi.import.pkg>
-        <isspol.osgi.jpa.context>META-INF/persistence.xml</isspol.osgi.jpa.context>
     </properties>
 
     <dependencies>

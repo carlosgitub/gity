@@ -1,13 +1,14 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class UsuarioUbicacionGeografica {
+public class UsuarioUbicacionGeografica implements Serializable {
     private int idUsuarioUbicacionGeografica;
     //private Integer idUsuario;
     private String usuario;
@@ -139,10 +140,7 @@ public class UsuarioUbicacionGeografica {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override

@@ -1,17 +1,16 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class GrupoUsuario {
+public class GrupoUsuario implements Serializable {
     private int idGrupoUsuario;
-    //private Integer idUsuario;
     private String usuario;
-    //private String grupo;
     private String estado;
     private boolean tieneVenc;
     private Timestamp fechaVenc;
@@ -32,16 +31,6 @@ public class GrupoUsuario {
         this.idGrupoUsuario = idGrupoUsuario;
     }
 
-    /*@Basic
-    @Column(name = "IdUsuario", nullable = true)
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }*/
-
     @Basic
     @Column(name = "Usuario", nullable = false, length = 15)
     public String getUsuario() {
@@ -51,16 +40,6 @@ public class GrupoUsuario {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-
-    /*@Basic
-    @Column(name = "Grupo", nullable = false, length = 3)
-    public String getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }*/
 
     @Basic
     @Column(name = "Estado", nullable = false, length = -1)
@@ -141,9 +120,7 @@ public class GrupoUsuario {
 
         if (idGrupoUsuario != that.idGrupoUsuario) return false;
         if (tieneVenc != that.tieneVenc) return false;
-        //if (idUsuario != null ? !idUsuario.equals(that.idUsuario) : that.idUsuario != null) return false;
         if (usuario != null ? !usuario.equals(that.usuario) : that.usuario != null) return false;
-        //if (grupo != null ? !grupo.equals(that.grupo) : that.grupo != null) return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
         if (fechaVenc != null ? !fechaVenc.equals(that.fechaVenc) : that.fechaVenc != null) return false;
         if (creacionUsuario != null ? !creacionUsuario.equals(that.creacionUsuario) : that.creacionUsuario != null)
@@ -152,18 +129,13 @@ public class GrupoUsuario {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override
     public int hashCode() {
         int result = idGrupoUsuario;
-        //result = 31 * result + (idUsuario != null ? idUsuario.hashCode() : 0);
         result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
-        //result = 31 * result + (grupo != null ? grupo.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         result = 31 * result + (tieneVenc ? 1 : 0);
         result = 31 * result + (fechaVenc != null ? fechaVenc.hashCode() : 0);

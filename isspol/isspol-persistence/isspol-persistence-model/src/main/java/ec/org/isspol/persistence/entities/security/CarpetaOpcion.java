@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -8,7 +9,7 @@ import java.util.Collection;
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class CarpetaOpcion {
+public class CarpetaOpcion implements Serializable{
     private int idCarpetaOpcion;
     private String nombre;
     private String descripcion;
@@ -24,8 +25,6 @@ public class CarpetaOpcion {
     private String modificaUsuario;
     private Timestamp modificaFecha;
     private CarpetaOpcion carpetaOpcionByIdCarpeta;
-    //private Integer idCarpeta;
-    //private int icono;
     private Collection<CarpetaOpcion> carpetaOpcionsByIdCarpetaOpcion;
     private Icono iconoByIcono;
     private Collection<Opcion> opcionsByIdCarpetaOpcion;
@@ -193,10 +192,7 @@ public class CarpetaOpcion {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override
@@ -227,26 +223,6 @@ public class CarpetaOpcion {
     public void setCarpetaOpcionByIdCarpeta(CarpetaOpcion carpetaOpcionByIdCarpeta) {
         this.carpetaOpcionByIdCarpeta = carpetaOpcionByIdCarpeta;
     }
-
-    /*@Basic
-    @Column(name = "IdCarpeta", nullable = true)
-    public Integer getIdCarpeta() {
-        return idCarpeta;
-    }
-
-    public void setIdCarpeta(Integer idCarpeta) {
-        this.idCarpeta = idCarpeta;
-    }*/
-
-    /*@Basic
-    @Column(name = "Icono", nullable = false)
-    public int getIcono() {
-        return icono;
-    }
-
-    public void setIcono(int icono) {
-        this.icono = icono;
-    }*/
 
     @OneToMany(mappedBy = "carpetaOpcionByIdCarpeta")
     public Collection<CarpetaOpcion> getCarpetaOpcionsByIdCarpetaOpcion() {

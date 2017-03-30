@@ -1,6 +1,5 @@
 package ec.org.isspol.persistence.entities.security;
 
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -371,10 +370,7 @@ public class Usuario implements Serializable {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(usuario1.modificaUsuario) : usuario1.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(usuario1.modificaFecha) : usuario1.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(usuario1.modificaFecha) : usuario1.modificaFecha == null;
     }
 
     @Override

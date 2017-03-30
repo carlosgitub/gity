@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -9,16 +10,14 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "Seguridad.EstructuraOrganizacional")
-public class EstructuraOrganizacional {
+public class EstructuraOrganizacional implements Serializable {
     private int idEstructuraOrganizacional;
     private Integer idEstructura;
     private String codigo;
     private String codigoAlterno;
     private String descripcion;
     private int orden;
-    //private int idNivelEstrcuturaOrg;
     private Integer nivel;
-    //private Integer idEstructuraPadre;
     private String estado;
     private String creacionUsuario;
     private Timestamp creacionFecha;
@@ -89,16 +88,6 @@ public class EstructuraOrganizacional {
         this.orden = orden;
     }
 
-    /*@Basic
-    @Column(name = "IdNivelEstrcuturaOrg", nullable = false)
-    public int getIdNivelEstrcuturaOrg() {
-        return idNivelEstrcuturaOrg;
-    }
-
-    public void setIdNivelEstrcuturaOrg(int idNivelEstrcuturaOrg) {
-        this.idNivelEstrcuturaOrg = idNivelEstrcuturaOrg;
-    }*/
-
     @Basic
     @Column(name = "Nivel", nullable = true)
     public Integer getNivel() {
@@ -108,16 +97,6 @@ public class EstructuraOrganizacional {
     public void setNivel(Integer nivel) {
         this.nivel = nivel;
     }
-
-    /*@Basic
-    @Column(name = "IdEstructuraPadre", nullable = true)
-    public Integer getIdEstructuraPadre() {
-        return idEstructuraPadre;
-    }
-
-    public void setIdEstructuraPadre(Integer idEstructuraPadre) {
-        this.idEstructuraPadre = idEstructuraPadre;
-    }*/
 
     @Basic
     @Column(name = "Estado", nullable = false, length = -1)
@@ -178,15 +157,12 @@ public class EstructuraOrganizacional {
 
         if (idEstructuraOrganizacional != that.idEstructuraOrganizacional) return false;
         if (orden != that.orden) return false;
-        //if (idNivelEstrcuturaOrg != that.idNivelEstrcuturaOrg) return false;
         if (idEstructura != null ? !idEstructura.equals(that.idEstructura) : that.idEstructura != null) return false;
         if (codigo != null ? !codigo.equals(that.codigo) : that.codigo != null) return false;
         if (codigoAlterno != null ? !codigoAlterno.equals(that.codigoAlterno) : that.codigoAlterno != null)
             return false;
         if (descripcion != null ? !descripcion.equals(that.descripcion) : that.descripcion != null) return false;
         if (nivel != null ? !nivel.equals(that.nivel) : that.nivel != null) return false;
-        //if (idEstructuraPadre != null ? !idEstructuraPadre.equals(that.idEstructuraPadre) : that.idEstructuraPadre != null)
-            //return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
         if (creacionUsuario != null ? !creacionUsuario.equals(that.creacionUsuario) : that.creacionUsuario != null)
             return false;
@@ -194,10 +170,7 @@ public class EstructuraOrganizacional {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override
@@ -208,9 +181,7 @@ public class EstructuraOrganizacional {
         result = 31 * result + (codigoAlterno != null ? codigoAlterno.hashCode() : 0);
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
         result = 31 * result + orden;
-        //result = 31 * result + idNivelEstrcuturaOrg;
         result = 31 * result + (nivel != null ? nivel.hashCode() : 0);
-        //result = 31 * result + (idEstructuraPadre != null ? idEstructuraPadre.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         result = 31 * result + (creacionUsuario != null ? creacionUsuario.hashCode() : 0);
         result = 31 * result + (creacionFecha != null ? creacionFecha.hashCode() : 0);

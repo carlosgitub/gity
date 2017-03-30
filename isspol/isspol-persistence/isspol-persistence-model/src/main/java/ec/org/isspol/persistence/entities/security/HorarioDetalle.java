@@ -1,15 +1,15 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class HorarioDetalle {
+public class HorarioDetalle implements Serializable {
     private int idHorarioDetalle;
-    //private int idHorario;
     private byte dia;
     private Timestamp desde;
     private Timestamp hasta;
@@ -29,16 +29,6 @@ public class HorarioDetalle {
     public void setIdHorarioDetalle(int idHorarioDetalle) {
         this.idHorarioDetalle = idHorarioDetalle;
     }
-
-    /*@Basic
-    @Column(name = "IdHorario", nullable = false)
-    public int getIdHorario() {
-        return idHorario;
-    }
-
-    public void setIdHorario(int idHorario) {
-        this.idHorario = idHorario;
-    }*/
 
     @Basic
     @Column(name = "Dia", nullable = false)
@@ -128,7 +118,6 @@ public class HorarioDetalle {
         HorarioDetalle that = (HorarioDetalle) o;
 
         if (idHorarioDetalle != that.idHorarioDetalle) return false;
-        //if (idHorario != that.idHorario) return false;
         if (dia != that.dia) return false;
         if (permitido != that.permitido) return false;
         if (desde != null ? !desde.equals(that.desde) : that.desde != null) return false;
@@ -139,16 +128,12 @@ public class HorarioDetalle {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override
     public int hashCode() {
         int result = idHorarioDetalle;
-        //result = 31 * result + idHorario;
         result = 31 * result + (int) dia;
         result = 31 * result + (desde != null ? desde.hashCode() : 0);
         result = 31 * result + (hasta != null ? hasta.hashCode() : 0);

@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -9,7 +10,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "Seguridad.NivelEstructuraOrg")
-public class NivelEstructuraOrg {
+public class NivelEstructuraOrg implements Serializable {
     private int idNivelEstructuraOrg;
     private int nivel;
     private short largoCodigo;
@@ -129,10 +130,7 @@ public class NivelEstructuraOrg {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(that.modificaUsuario) : that.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(that.modificaFecha) : that.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(that.modificaFecha) : that.modificaFecha == null;
     }
 
     @Override

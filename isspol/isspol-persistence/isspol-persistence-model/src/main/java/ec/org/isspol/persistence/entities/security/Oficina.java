@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -9,12 +10,10 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "Seguridad.Oficina")
-public class Oficina {
+public class Oficina implements Serializable {
     private int idOficina;
     private String oficina;
-    //private Integer idSucursal;
     private String sucursal;
-    //private Integer idTipoOficina;
     private String tipoOficina;
     private String nombre;
     private String codigo;
@@ -65,16 +64,6 @@ public class Oficina {
         this.oficina = oficina;
     }
 
-    /*@Basic
-    @Column(name = "IdSucursal", nullable = true)
-    public Integer getIdSucursal() {
-        return idSucursal;
-    }
-
-    public void setIdSucursal(Integer idSucursal) {
-        this.idSucursal = idSucursal;
-    }*/
-
     @Basic
     @Column(name = "Sucursal", nullable = false, length = 2)
     public String getSucursal() {
@@ -84,16 +73,6 @@ public class Oficina {
     public void setSucursal(String sucursal) {
         this.sucursal = sucursal;
     }
-
-    /*@Basic
-    @Column(name = "IdTipoOficina", nullable = true)
-    public Integer getIdTipoOficina() {
-        return idTipoOficina;
-    }
-
-    public void setIdTipoOficina(Integer idTipoOficina) {
-        this.idTipoOficina = idTipoOficina;
-    }*/
 
     @Basic
     @Column(name = "TipoOficina", nullable = false, length = 2)
@@ -356,10 +335,7 @@ public class Oficina {
         if (esAdministracionCartera != oficina1.esAdministracionCartera) return false;
         if (empresa != oficina1.empresa) return false;
         if (oficina != null ? !oficina.equals(oficina1.oficina) : oficina1.oficina != null) return false;
-        //if (idSucursal != null ? !idSucursal.equals(oficina1.idSucursal) : oficina1.idSucursal != null) return false;
         if (sucursal != null ? !sucursal.equals(oficina1.sucursal) : oficina1.sucursal != null) return false;
-        //if (idTipoOficina != null ? !idTipoOficina.equals(oficina1.idTipoOficina) : oficina1.idTipoOficina != null)
-            //return false;
         if (tipoOficina != null ? !tipoOficina.equals(oficina1.tipoOficina) : oficina1.tipoOficina != null)
             return false;
         if (nombre != null ? !nombre.equals(oficina1.nombre) : oficina1.nombre != null) return false;
@@ -391,19 +367,14 @@ public class Oficina {
             return false;
         if (modificaUsuario != null ? !modificaUsuario.equals(oficina1.modificaUsuario) : oficina1.modificaUsuario != null)
             return false;
-        if (modificaFecha != null ? !modificaFecha.equals(oficina1.modificaFecha) : oficina1.modificaFecha != null)
-            return false;
-
-        return true;
+        return modificaFecha != null ? modificaFecha.equals(oficina1.modificaFecha) : oficina1.modificaFecha == null;
     }
 
     @Override
     public int hashCode() {
         int result = idOficina;
         result = 31 * result + (oficina != null ? oficina.hashCode() : 0);
-        //result = 31 * result + (idSucursal != null ? idSucursal.hashCode() : 0);
         result = 31 * result + (sucursal != null ? sucursal.hashCode() : 0);
-        //result = 31 * result + (idTipoOficina != null ? idTipoOficina.hashCode() : 0);
         result = 31 * result + (tipoOficina != null ? tipoOficina.hashCode() : 0);
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (codigo != null ? codigo.hashCode() : 0);

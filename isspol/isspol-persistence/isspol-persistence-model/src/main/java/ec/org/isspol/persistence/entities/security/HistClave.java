@@ -1,6 +1,7 @@
 package ec.org.isspol.persistence.entities.security;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
@@ -8,9 +9,8 @@ import java.util.Arrays;
  * Created by mauchilan on 20/3/17.
  */
 @Entity
-public class HistClave {
+public class HistClave implements Serializable {
     private int idHistClave;
-    //private Integer idUsuario;
     private String usuario;
     private byte[] clave;
     private String creacionUsuario;
@@ -26,16 +26,6 @@ public class HistClave {
     public void setIdHistClave(int idHistClave) {
         this.idHistClave = idHistClave;
     }
-
-    /*@Basic
-    @Column(name = "IdUsuario", nullable = true)
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }*/
 
     @Basic
     @Column(name = "Usuario", nullable = true, length = 15)
@@ -85,21 +75,16 @@ public class HistClave {
         HistClave histClave = (HistClave) o;
 
         if (idHistClave != histClave.idHistClave) return false;
-        //if (idUsuario != null ? !idUsuario.equals(histClave.idUsuario) : histClave.idUsuario != null) return false;
         if (usuario != null ? !usuario.equals(histClave.usuario) : histClave.usuario != null) return false;
         if (!Arrays.equals(clave, histClave.clave)) return false;
         if (creacionUsuario != null ? !creacionUsuario.equals(histClave.creacionUsuario) : histClave.creacionUsuario != null)
             return false;
-        if (creacionFecha != null ? !creacionFecha.equals(histClave.creacionFecha) : histClave.creacionFecha != null)
-            return false;
-
-        return true;
+        return creacionFecha != null ? creacionFecha.equals(histClave.creacionFecha) : histClave.creacionFecha == null;
     }
 
     @Override
     public int hashCode() {
         int result = idHistClave;
-        //result = 31 * result + (idUsuario != null ? idUsuario.hashCode() : 0);
         result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(clave);
         result = 31 * result + (creacionUsuario != null ? creacionUsuario.hashCode() : 0);
