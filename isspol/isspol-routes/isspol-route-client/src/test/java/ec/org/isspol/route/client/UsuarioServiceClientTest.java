@@ -13,7 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +29,7 @@ public class UsuarioServiceClientTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/route-client.xml");
+        return new ClassPathXmlApplicationContext("route-client-test.xml");
     }
 
     @Test
@@ -45,6 +47,7 @@ public class UsuarioServiceClientTest extends CamelSpringTestSupport {
     }
 
     @Test
+    @Ignore
     public void testSPCargo() throws IsspolException {
         UsuarioService usuarioService = context.getRegistry().lookupByNameAndType("usuario", UsuarioService.class);
         LOG.info("Calling SP Seguridad.ProcDddwEstructuraOrganizacional");
@@ -53,6 +56,17 @@ public class UsuarioServiceClientTest extends CamelSpringTestSupport {
         message.setParameters(new Object[]{});
         Map<String, Object> response = (Map<String, Object>) usuarioService.callRemoteService(message);
         LOG.info("Response {}", response);
+        for (Map.Entry<String, Object> objectEntry : response.entrySet()) {
+            LOG.info("{} --> {} ", objectEntry.getKey(), objectEntry.getValue());
+        }
+        List<HashMap> rows = (List) response.get("#result-set-1");
+        for (HashMap  row : rows) {
+            LOG.info("descripcion: {}", row.get("descripcion"));
+            LOG.info("id_estructura: {}", row.get("id_estructura"));
+            LOG.info("Icono: {}", row.get("Icono"));
+            LOG.info("Nivel: {}", row.get("Nivel"));
+            LOG.info("orden_arbol: {}", row.get("orden_arbol"));
+        }
     }
 
     /**
@@ -78,6 +92,7 @@ public class UsuarioServiceClientTest extends CamelSpringTestSupport {
      * @throws IsspolException
      */
     @Test
+    @Ignore
     public void testUpdateUserSP() throws IsspolException {
         UsuarioService usuarioService = context.getRegistry().lookupByNameAndType("usuario", UsuarioService.class);
         LOG.info("Calling SP Seguridad.ProcUsuarioActualizar");

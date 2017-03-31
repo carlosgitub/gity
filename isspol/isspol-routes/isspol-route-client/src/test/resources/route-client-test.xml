@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
+        <property name="userName" value="admin"/>
+        <property name="password" value="admin"/>
+        <property name="brokerURL" value="tcp://192.168.217.39:61616"/>
+        <property name="trustAllPackages" value="true"/>
+    </bean>
+
+    <bean id="usuarioServiceClient" class="ec.org.isspol.route.client.UsuarioServiceClient">
+        <property name="context" ref="client"/>
+    </bean>
+
+    <!-- the camel client -->
+    <camelContext id="client" xmlns="http://camel.apache.org/schema/spring" >
+        <proxy id="usuario"
+                     serviceInterface="ec.org.isspol.route.security.service.UsuarioService"
+                     serviceUrl="activemq:usuario?replyTo=queue:usuario.reply"/>
+    </camelContext>
+
+</beans>
