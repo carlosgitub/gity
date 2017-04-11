@@ -1,0 +1,36 @@
+<!DOCTYPE dwr PUBLIC
+        "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+        "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+    <init>
+        <converter id="map" class="org.directwebremoting.convert.MapConverter"/>
+        <converter id="object" class="org.directwebremoting.convert.ObjectConverter"/>
+    </init>
+
+    <allow>
+        <create creator="new" javascript="Usuario" scope="application">
+            <param name="class" value="ec.org.isspol.web.seguridades.UsuarioDWR"/>
+            <include method="obtenerOficinasSucursales"/>
+            <include method="obtenerHorarios"/>
+            <include method="obtenerEstados"/>
+            <include method="obtenerCargos"/>
+            <include method="guardar"/>
+            <include method="insertarUsuario"/>
+            <include method="updateUserSP"/>
+        </create>
+
+
+        <convert converter="bean" match="ec.org.isspol.persistence.entities.security.Horario"/>
+        <convert converter="bean" match="ec.org.isspol.persistence.entities.security.OficinaSucursal"/>
+        <convert converter="bean" match="ec.org.isspol.persistence.entities.security.EstadoUsuario"/>
+        <convert converter="bean" match="ec.org.isspol.persistence.entities.security.Usuario"/>
+        <convert converter="hibernate3" match="ec.org.isspol.persistence.entities.security.Horario">
+            <param name="exclude" value="ec.org.isspol.persistence.entities.security.Horario.horarioDetallesByIdHorario"/>
+        </convert>
+        <convert converter="hibernate3" match="ec.org.isspol.persistence.entities.security.EstadoUsuario">
+            <param name="exclude" value="ec.org.isspol.persistence.entities.security.EstadoUsuario.usuariosByIdEstadoUsuario"/>
+        </convert>
+        <convert converter="bean" match="ec.org.isspol.persistence.entities.security.Usuario"/>
+    </allow>
+</dwr>
