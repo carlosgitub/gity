@@ -16,6 +16,7 @@ import java.util.Map;
  * Created by santiago.yacelga on 29/03/2017.
  *//*
 
+
 public class UsuarioDWR implements Serializable {
 
 
