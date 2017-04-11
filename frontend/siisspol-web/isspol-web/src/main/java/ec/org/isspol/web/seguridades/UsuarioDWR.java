@@ -1,4 +1,3 @@
-/*
 package ec.org.isspol.web.seguridades;
 
 import ec.org.isspol.persistence.entities.security.EstadoUsuario;
@@ -11,11 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-*/
 /**
  * Created by santiago.yacelga on 29/03/2017.
- *//*
-
+ */
 public class UsuarioDWR implements Serializable {
 
 
@@ -25,41 +22,32 @@ public class UsuarioDWR implements Serializable {
     }
 
     public List<Horario> obtenerHorarios  ()throws  Exception{
-       */
-/* UsuarioServiceClient client = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
-        List<Horario> lstHorarios = client.getAllHorario();*//*
-
+       /* UsuarioServiceClient client = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
+        List<Horario> lstHorarios = client.getAllHorario();*/
 
         return null;
     }
 
     public Map<String, Object> obtenerCargos(){
-    */
-/*    UsuarioServiceClient cargos = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
-        Map<String, Object> mapCargos = cargos.getAllCargo();*//*
-
+    /*    UsuarioServiceClient cargos = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
+        Map<String, Object> mapCargos = cargos.getAllCargo();*/
         return null;
     }
 
     public List<EstadoUsuario> obtenerEstados (){
-       */
-/* UsuarioServiceClient client = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
-        List<EstadoUsuario> lstEstadosUsuario = client.getAllEstadoUsuario();*//*
-
+       /* UsuarioServiceClient client = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
+        List<EstadoUsuario> lstEstadosUsuario = client.getAllEstadoUsuario();*/
         return null;
     }
 
     public List<OficinaSucursal> obtenerOficinasSucursales(){
-       */
-/* UsuarioServiceClient client = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
-        List<OficinaSucursal> lstOficinasSucursal = client.getAllOficinaSucursal();*//*
-
+       /* UsuarioServiceClient client = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
+        List<OficinaSucursal> lstOficinasSucursal = client.getAllOficinaSucursal();*/
         return null;
     }
 
     public Map<String, Object> insertarUsuario(HashMap<String, Object> values){
-   */
-/*     UsuarioServiceClient client= (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
+   /*     UsuarioServiceClient client= (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
         HashMap<String, Object> in = new HashMap();
         in.put(ConstantIsspol.AS_USU_USUARIO, "candresc2");
         in.put(ConstantIsspol.AI_OFICINA, 4);
@@ -85,14 +73,12 @@ public class UsuarioDWR implements Serializable {
         if(resultado!=null)
             for(Map.Entry<String,Object>objecto:resultado.entrySet()){
                 System.out.println(objecto.getKey()+"/"+objecto.getValue());
-            }*//*
-
+            }*/
         return null;
     }
 
     public Map<String, Object> updateUserSP(HashMap<String, Object> values){
-        */
-/*UsuarioServiceClient usuarioService = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
+        /*UsuarioServiceClient usuarioService = (UsuarioServiceClient) ApplicartionContext.getBean("usuarioServiceClient");
         HashMap<String, Object> in = new HashMap();
         in.put(ConstantIsspol.AS_USUARIO, "candresc1");
         in.put(ConstantIsspol.AS_OFICINA, "1001");
@@ -113,9 +99,7 @@ public class UsuarioDWR implements Serializable {
         in.put(ConstantIsspol.AS_USUARIO_SUPERIOR, null);
         in.put(ConstantIsspol.AI_ID_DASHBOARD_INICIO, 1);
         System.out.println("ejecucion");
-        Map<String, Object>resultado=usuarioService.updateUsuario(in);*//*
-
+        Map<String, Object>resultado=usuarioService.updateUsuario(in);*/
         return null;
     }
 }
-*/

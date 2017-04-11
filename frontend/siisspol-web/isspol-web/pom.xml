@@ -55,7 +55,7 @@
 
     <dependencies>
 
-        <!--<dependency>
+        <dependency>
             <groupId>ec.org.isspol</groupId>
             <artifactId>isspol-route-client</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -73,7 +73,7 @@
                     <artifactId>isspol-route-pool</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>-->
+        </dependency>
 
 
 
