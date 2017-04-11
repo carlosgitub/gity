@@ -1,6 +1,6 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['angular', 'objectpath', 'tv4'], factory);
+    define(['../../angular/angular', 'objectpath', 'tv4'], factory);
   } else if (typeof exports === 'object') {
     module.exports = factory(require('angular'), require('objectpath'), require('tv4'));
   } else {
