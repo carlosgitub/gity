@@ -7,7 +7,7 @@
 
     <reference id="siisspolwebDS" interface="javax.sql.DataSource" filter="(dataSourceName=siisspolwebDS)" availability="mandatory"/>
 
-    <!-- DAOs -->
+    <!-- DAOs --> <!-- COMENTARIOS -->
     <bean id="estadoUsuarioDao" class="ec.org.isspol.persistence.dao.security.impl.EstadoUsuarioDaoImpl">
         <jpa:context unitname="siisspolwebDS" property="entityManager"/>
         <tx:transaction method="*" value="Required"/>
