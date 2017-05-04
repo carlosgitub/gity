@@ -5,23 +5,23 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-    <reference id="SIISPOLWEB" interface="javax.sql.DataSource" filter="(dataSourceName=SIISPOLWEB)" availability="mandatory"/>
+    <reference id="siisspolwebDS" interface="javax.sql.DataSource" filter="(dataSourceName=siisspolwebDS)" availability="mandatory"/>
 
     <!-- DAOs -->
     <bean id="estadoUsuarioDao" class="ec.org.isspol.persistence.dao.security.impl.EstadoUsuarioDaoImpl">
-        <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
+        <jpa:context unitname="siisspolwebDS" property="entityManager"/>
         <tx:transaction method="*" value="Required"/>
     </bean>
     <bean id="horarioDao" class="ec.org.isspol.persistence.dao.security.impl.HorarioDaoImpl">
-        <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
+        <jpa:context unitname="siisspolwebDS" property="entityManager"/>
         <tx:transaction method="*" value="Required"/>
     </bean>
     <bean id="oficinaDao" class="ec.org.isspol.persistence.dao.security.impl.OficinaDaoImpl">
-        <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
+        <jpa:context unitname="siisspolwebDS" property="entityManager"/>
         <tx:transaction method="*" value="Required"/>
     </bean>
     <bean id="usuarioDao" class="ec.org.isspol.persistence.dao.security.impl.UsuarioDaoImpl">
-        <jpa:context unitname="SIISPOLWEB" property="entityManager"/>
+        <jpa:context unitname="siisspolwebDS" property="entityManager"/>
         <tx:transaction method="*" value="Required"/>
     </bean>
 
@@ -39,7 +39,7 @@
         <property name="oficinaDao" ref="oficinaDao"/>
     </bean>
     <bean id="storeProcedureSvc" class="ec.org.isspol.persistence.sp.service.IsspolStoreProcedureSvcImpl">
-        <property name="dataSource" ref="SIISPOLWEB"/>
+        <property name="dataSource" ref="siisspolwebDS"/>
     </bean>
 
     <service ref="usuarioSvc" interface="ec.org.isspol.persistence.service.security.UsuarioSvc"/>
